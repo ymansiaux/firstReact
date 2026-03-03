@@ -39,13 +39,18 @@ function App() {
 
 
   return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
+    {pokemons.map((pokemon, id) => (
     <div>
-      <Pokemon 
-      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemons[0].id}.png`}
-      name= {pokemons[0].name}
-      alt={pokemons[0].name}
+      <Pokemon
+      key={id}
+      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+      name= {pokemon.name}
+      alt={pokemon.name}
       />
       {/* {console.log(pokemons)} */}
+    </div>
+    ))}
     </div>
   );
 }
