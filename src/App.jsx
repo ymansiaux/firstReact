@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Pokemon from "./Pokemon";
+import SelectInput from "./SelectInput";
 
 import * as d3 from "d3";
 
@@ -29,6 +30,20 @@ const pokemons = [
   { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
 ];
 
+const options = [
+  { value: 'Grass', label: 'Grass' },
+  { value: 'Fire', label: 'Fire' },
+  { value: 'Water', label: 'Water' },
+  { value: 'Psychic', label: 'Psychic' },
+  { value: 'Electric', label: 'Electric' },
+  { value: 'Normal', label: 'Normal' },
+  { value: 'Ghost', label: 'Ghost' },
+  { value: 'Dragon', label: 'Dragon' },
+  { value: 'Fighting', label: 'Fighting' },
+  { value: 'Rock', label: 'Rock' },
+];
+
+
 // Sprite image URL pattern:
 // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
@@ -37,8 +52,12 @@ function App() {
   const [showCircle, setShowCircle] = useState(true);
   const [isRed, setIsRed] = useState(false);
 
+const [selectedPokemonType, setSelectedPokemonType] = useState(options[0]);
 
   return (
+    <div>
+    <SelectInput options={options} value={selectedPokemonType} onChange={setSelectedPokemonType} />
+    {/* affichage des pokémons filtrés */}
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
     {pokemons.map((pokemon, id) => (
     <div>
@@ -52,6 +71,7 @@ function App() {
     </div>
     ))}
     </div>
+  </div>
   );
 }
 
