@@ -1,7 +1,6 @@
-import Select from 'react-select';
+import Select from "react-select";
 
 const SelectInput = (props) => {
-
   return (
     <Select
       options={props.options}
@@ -9,6 +8,6 @@ const SelectInput = (props) => {
       onChange={props.onChange}
     />
   );
-}
+};
 
 export default SelectInput;
