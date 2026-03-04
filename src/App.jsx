@@ -1,10 +1,10 @@
 import { useState } from "react";
 import pokemonLogo from "./assets/pokemon-23.svg";
 import "./App.css";
-import Pokemon from "./Pokemon";
-import SelectInput from "./SelectInput";
-import Card from "./Card";
-import SliderInput from "./Slider";
+import Pokemon from "./components/Pokemon";
+import SelectInput from "./components/SelectInput";
+import Card from "./components/Card";
+import SliderInput from "./components/Slider";
 import { min } from "d3";
 
 const pokemons = [
