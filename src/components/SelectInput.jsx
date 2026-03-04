@@ -1,11 +1,11 @@
 import Select from "react-select";
 
-const SelectInput = (props) => {
+const SelectInput = ({ options, value, onChange }) => {
   return (
     <Select
-      options={props.options}
-      value={props.value}
-      onChange={props.onChange}
+      options={options}
+      value={value}
+      onChange={onChange}
     />
   );
 };

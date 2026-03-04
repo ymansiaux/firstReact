@@ -90,17 +90,10 @@ function App() {
           gap: 12,
         }}
       >
-        {filteredPokemonsBasedOnType.map((pokemon, id) => (
+        {filteredPokemonsBasedOnType.map((pokemon) => (
           <div>
             <Card opacity={pokemon.opacity}>
-              <Pokemon
-                key={id}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                name={pokemon.name}
-                alt={pokemon.name}
-                attack={pokemon.attack}
-                hp={pokemon.hp}
-              />
+              <Pokemon pokemon={pokemon} />
             </Card>
           </div>
         ))}
