@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Pokemon from "./Pokemon";
 import SelectInput from "./SelectInput";
+import Card from "./Card";
+import SliderInput from "./Slider";
 
 import * as d3 from "d3";
 
@@ -56,17 +58,21 @@ const filteredPokemonsBasedOnType = pokemons.filter((pokemon) => pokemon.type ==
 
   return (
     <div>
+      <h4 style={{ textAlign: "center" }}> Choose a Pokemon type: </h4>
     <SelectInput options={options} value={selectedPokemonType} onChange={setSelectedPokemonType} />
     {/* {console.log("selectedPokemonType:", selectedPokemonType.value)} */}    
+    <SliderInput title = "Select a minimal attack capacity"/>
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
     {filteredPokemonsBasedOnType.map((pokemon, id) => (
     <div>
+      <Card>
       <Pokemon
       key={id}
       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
       name= {pokemon.name}
       alt={pokemon.name}
       />
+      </Card>
       {/* {console.log(pokemons)} */}
     </div>
     ))}
