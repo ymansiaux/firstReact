@@ -1,13 +1,10 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import pokemonLogo from './assets/pokemon-23.svg'
 import './App.css'
 import Pokemon from "./Pokemon";
 import SelectInput from "./SelectInput";
 import Card from "./Card";
 import SliderInput from "./Slider";
-
-import * as d3 from "d3";
 
 const pokemons = [
   { id: 1, name: "Bulbasaur", type: "Grass", hp: 45, attack: 49 },
@@ -71,16 +68,23 @@ const pokemonsOpacityBasedOnAttack = filteredPokemonsBasedOnType.map((pokemon) =
   return pokemon
 });
 
+const nPokemonsWithOpacity1 = pokemonsOpacityBasedOnAttack.filter((pokemon) => pokemon.opacity === 1).length;
+
 console.log("pokemonsOpacityBasedOnAttack:", pokemonsOpacityBasedOnAttack);
 
   return (
-    <div>
+    <div style={{ minHeight: "100vh", backgroundColor: "#dce8f8", padding: 16 }}>
+      <div style={{ textAlign: "center", marginBottom: 16 }}>
+        <img src={pokemonLogo} alt="Pokemon Logo" style={{ height: 80 }} />
+        <h1 style={{ fontFamily: "serif", letterSpacing: 2 }}>Pokemon Explorer</h1>
+      </div>
       <h4 style={{ textAlign: "center" }}> Choose a Pokemon type: </h4>
     <SelectInput options={options} value={selectedPokemonType} onChange={setSelectedPokemonType} />
     <div style={{ display: "flex", justifyContent: "center", gap: 32 }}>
       <SliderInput title = "Select a minimal attack capacity" value={selectedMinimalAttack} onChange={setSelectedMinimalAttack} min={minAttack} max={maxAttack}/>
       <SliderInput title = "Select a minimal hp" value={selectedMinimalHp} onChange={setSelectedMinimalHp} min={minHp} max={maxHp}/>
     </div>
+      <h4 style={{ textAlign: "center", marginTop: 32 }}> {nPokemonsWithOpacity1} pokemons match your criteria </h4>
     <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", gap: 12 }}>
     {filteredPokemonsBasedOnType.map((pokemon, id) => (
     <div>
