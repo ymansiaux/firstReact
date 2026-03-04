@@ -35,6 +35,9 @@ const pokemons = [
 const minAttack = Math.min(pokemons.map((pokemon) => pokemon.attack));
 const maxAttack = Math.max(pokemons.map((pokemon) => pokemon.attack));
 
+const minHp = Math.min(pokemons.map((pokemon) => pokemon.hp));
+const maxHp = Math.max(pokemons.map((pokemon) => pokemon.hp));
+
 
 const options = [
   { value: 'Grass', label: 'Grass' },
@@ -61,9 +64,10 @@ const [selectedPokemonType, setSelectedPokemonType] = useState(options[0]);
 const filteredPokemonsBasedOnType = pokemons.filter((pokemon) => pokemon.type === selectedPokemonType.value);
 
 const [selectedMinimalAttack, setSelectedMinimalAttack] = useState(10);
+const [selectedMinimalHp, setSelectedMinimalHp] = useState(10);
 
 const pokemonsOpacityBasedOnAttack = filteredPokemonsBasedOnType.map((pokemon) => {
-  pokemon.opacity = pokemon.attack >= selectedMinimalAttack ? 1 : 0.3
+  pokemon.opacity = (pokemon.attack >= selectedMinimalAttack && pokemon.hp >= selectedMinimalHp) ? 1 : 0.3
   return pokemon
 });
 
@@ -73,9 +77,11 @@ console.log("pokemonsOpacityBasedOnAttack:", pokemonsOpacityBasedOnAttack);
     <div>
       <h4 style={{ textAlign: "center" }}> Choose a Pokemon type: </h4>
     <SelectInput options={options} value={selectedPokemonType} onChange={setSelectedPokemonType} />
-    <SliderInput title = "Select a minimal attack capacity" value={selectedMinimalAttack} onChange={setSelectedMinimalAttack} min={minAttack} max={maxAttack}/>
-    {console.log("selectedMinimalAttack:", selectedMinimalAttack)}
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
+    <div style={{ display: "flex", justifyContent: "center", gap: 32 }}>
+      <SliderInput title = "Select a minimal attack capacity" value={selectedMinimalAttack} onChange={setSelectedMinimalAttack} min={minAttack} max={maxAttack}/>
+      <SliderInput title = "Select a minimal hp" value={selectedMinimalHp} onChange={setSelectedMinimalHp} min={minHp} max={maxHp}/>
+    </div>
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", gap: 12 }}>
     {filteredPokemonsBasedOnType.map((pokemon, id) => (
     <div>
       <Card opacity={pokemon.opacity}>
