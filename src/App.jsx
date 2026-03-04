@@ -49,17 +49,17 @@ const options = [
 
 function App() {
 
-  const [showCircle, setShowCircle] = useState(true);
-  const [isRed, setIsRed] = useState(false);
-
 const [selectedPokemonType, setSelectedPokemonType] = useState(options[0]);
+// À chaque changement de selectedPokemonType (state), React re-exécute entièrement la fonction App()
+// C'est pour ca qu'on peut utiliser un const pour filteredPokemonsBasedOnType, qui sera recalculé à chaque changement de selectedPokemonType
+const filteredPokemonsBasedOnType = pokemons.filter((pokemon) => pokemon.type === selectedPokemonType.value);
 
   return (
     <div>
     <SelectInput options={options} value={selectedPokemonType} onChange={setSelectedPokemonType} />
-    {/* affichage des pokémons filtrés */}
+    {/* {console.log("selectedPokemonType:", selectedPokemonType.value)} */}    
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
-    {pokemons.map((pokemon, id) => (
+    {filteredPokemonsBasedOnType.map((pokemon, id) => (
     <div>
       <Pokemon
       key={id}
