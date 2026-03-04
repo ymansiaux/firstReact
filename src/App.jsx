@@ -47,22 +47,18 @@ function App() {
   console.log("pokemonsOpacityBasedOnAttack:", pokemonsOpacityBasedOnAttack);
 
   return (
-    <div
-      style={{ minHeight: "100vh", backgroundColor: "#dce8f8", padding: 16 }}
-    >
-      <div style={{ textAlign: "center", marginBottom: 16 }}>
-        <img src={pokemonLogo} alt="Pokemon Logo" style={{ height: 80 }} />
-        <h1 style={{ fontFamily: "serif", letterSpacing: 2 }}>
-          Pokemon Explorer
-        </h1>
+    <div className="app-container">
+      <div className="app-header">
+        <img src={pokemonLogo} alt="Pokemon Logo" className="app-logo" />
+        <h1 className="app-title">Pokemon Explorer</h1>
       </div>
-      <h4 style={{ textAlign: "center" }}> Choose a Pokemon type: </h4>
+      <h4 className="app-type-label"> Choose a Pokemon type: </h4>
       <SelectInput
         options={typeOptions}
         value={selectedPokemonType}
         onChange={setSelectedPokemonType}
       />
-      <div style={{ display: "flex", justifyContent: "center", gap: 32 }}>
+      <div className="sliders-container">
         <SliderInput
           title="Select a minimal attack capacity"
           value={selectedMinimalAttack}
@@ -78,20 +74,12 @@ function App() {
           maximum={maxHp}
         />
       </div>
-      <h4 style={{ textAlign: "center", marginTop: 32 }}>
-        {" "}
-        {nPokemonsWithOpacity1} pokemons match your criteria{" "}
+      <h4 className="results-count">
+        {nPokemonsWithOpacity1} pokemons match your criteria
       </h4>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          gap: 12,
-        }}
-      >
+      <div className="pokemon-grid">
         {filteredPokemonsBasedOnType.map((pokemon) => (
-          <div>
+          <div key={pokemon.id}>
             <Card opacity={pokemon.opacity}>
               <Pokemon pokemon={pokemon} />
             </Card>
