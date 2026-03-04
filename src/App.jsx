@@ -56,16 +56,19 @@ const [selectedPokemonType, setSelectedPokemonType] = useState(options[0]);
 // C'est pour ca qu'on peut utiliser un const pour filteredPokemonsBasedOnType, qui sera recalculé à chaque changement de selectedPokemonType
 const filteredPokemonsBasedOnType = pokemons.filter((pokemon) => pokemon.type === selectedPokemonType.value);
 
+const [selectedMinimalAttack, setSelectedMinimalAttack] = useState(10);
+
   return (
     <div>
       <h4 style={{ textAlign: "center" }}> Choose a Pokemon type: </h4>
     <SelectInput options={options} value={selectedPokemonType} onChange={setSelectedPokemonType} />
     {/* {console.log("selectedPokemonType:", selectedPokemonType.value)} */}    
-    <SliderInput title = "Select a minimal attack capacity"/>
+    <SliderInput title = "Select a minimal attack capacity" value={selectedMinimalAttack} onChange={setSelectedMinimalAttack}/>
+    {console.log("selectedMinimalAttack:", selectedMinimalAttack)}
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
     {filteredPokemonsBasedOnType.map((pokemon, id) => (
     <div>
-      <Card>
+      <Card opacity={"100%"}>
       <Pokemon
       key={id}
       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
