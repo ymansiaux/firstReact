@@ -32,6 +32,10 @@ const pokemons = [
   { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
 ];
 
+const minAttack = Math.min(pokemons.map((pokemon) => pokemon.attack));
+const maxAttack = Math.max(pokemons.map((pokemon) => pokemon.attack));
+
+
 const options = [
   { value: 'Grass', label: 'Grass' },
   { value: 'Fire', label: 'Fire' },
@@ -69,8 +73,7 @@ console.log("pokemonsOpacityBasedOnAttack:", pokemonsOpacityBasedOnAttack);
     <div>
       <h4 style={{ textAlign: "center" }}> Choose a Pokemon type: </h4>
     <SelectInput options={options} value={selectedPokemonType} onChange={setSelectedPokemonType} />
-    {/* {console.log("selectedPokemonType:", selectedPokemonType.value)} */}    
-    <SliderInput title = "Select a minimal attack capacity" value={selectedMinimalAttack} onChange={setSelectedMinimalAttack}/>
+    <SliderInput title = "Select a minimal attack capacity" value={selectedMinimalAttack} onChange={setSelectedMinimalAttack} min={minAttack} max={maxAttack}/>
     {console.log("selectedMinimalAttack:", selectedMinimalAttack)}
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
     {filteredPokemonsBasedOnType.map((pokemon, id) => (
@@ -81,9 +84,10 @@ console.log("pokemonsOpacityBasedOnAttack:", pokemonsOpacityBasedOnAttack);
       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
       name= {pokemon.name}
       alt={pokemon.name}
+      attack={pokemon.attack}
+      hp={pokemon.hp}
       />
       </Card>
-      {/* {console.log(pokemons)} */}
     </div>
     ))}
     </div>

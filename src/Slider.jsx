@@ -9,7 +9,7 @@ export default function SliderInput(props) {
       <Slider
         size="small"
         value={props.value}
-        step={10} marks min={10} max={110}
+        step={10} marks min={props.minimum} max={props.maximum}
         aria-label="Small"
         valueLabelDisplay="auto"
         onChange={(_e, newValue) => props.onChange(newValue)}
