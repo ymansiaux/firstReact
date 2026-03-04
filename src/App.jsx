@@ -58,6 +58,13 @@ const filteredPokemonsBasedOnType = pokemons.filter((pokemon) => pokemon.type ==
 
 const [selectedMinimalAttack, setSelectedMinimalAttack] = useState(10);
 
+const pokemonsOpacityBasedOnAttack = filteredPokemonsBasedOnType.map((pokemon) => {
+  pokemon.opacity = pokemon.attack >= selectedMinimalAttack ? 1 : 0.3
+  return pokemon
+});
+
+console.log("pokemonsOpacityBasedOnAttack:", pokemonsOpacityBasedOnAttack);
+
   return (
     <div>
       <h4 style={{ textAlign: "center" }}> Choose a Pokemon type: </h4>
@@ -68,7 +75,7 @@ const [selectedMinimalAttack, setSelectedMinimalAttack] = useState(10);
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
     {filteredPokemonsBasedOnType.map((pokemon, id) => (
     <div>
-      <Card opacity={"100%"}>
+      <Card opacity={pokemon.opacity}>
       <Pokemon
       key={id}
       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
